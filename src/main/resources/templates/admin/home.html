@@ -1,10 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: head(title=#{pageTitle.home})"></head>
 <body>
-    Admin
+
+<header th:replace="fragments/base.html :: header"></header>
+<nav th:replace="fragments/base.html :: nav"></nav>
+
+    <section>
+        <div class="container">
+            <h1 th:utext="#{admin.home.title}"></h1>
+            <div th:utext="#{admin.home.subtitle(|${user.firstName} ${user.lastName}|)}" class="subtitle"></div>
+            <hr>
+            <div class="flex-row">
+                <div class="col col-5 p-1">
+                    <h2 th:utext="#{admin.artist.title}"></h2>
+                    <form th:action="@{/addArtist}" method="POST">
+                        <div>
+                            <div class="form-group">
+                                <label th:utext="#{admin.artist.firstName}"></label>
+                                <input name="firstName" type="text" required />
+                            </div>
+                            <div class="form-group">
+                                <label th:utext="#{admin.artist.lastName}"></label>
+                                <input name="lastName" type="text" required />
+                            </div>
+                            <div class="form-group">
+                                <label th:utext="#{admin.artist.nationality}"></label>
+                                <input name="nationality" type="text" />
+                            </div>
+                            <div class="form-group">
+                                <label th:utext="#{admin.artist.birthPlace}"></label>
+                                <input name="birthPlace" type="text" />
+                            </div>
+                            <div class="form-group">
+                                <label th:utext="#{admin.artist.dateOfBirth}"></label>
+                                <input name="dateOfBirth" type="date" />
+                            </div>
+                            <div class="form-group">
+                                <label th:utext="#{admin.artist.placeOfDeath}"></label>
+                                <input name="birthPlace" type="text" />
+                            </div>
+                            <div class="form-group">
+                                <label th:utext="#{admin.artist.dateOfDeath}"></label>
+                                <input name="dateOfBirth" type="date" />
+                            </div>
+                            <div class="form-group">
+                                <label th:utext="#{admin.artist.biography}"></label>
+                                <input name="biography" type="text" />
+                            </div>
+                            <button class="btn" type="submit" th:utext="#{admin.artist.button}"></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col col-5 p-1">
+                    <h2 th:utext="#{admin.work.title}"></h2>
+                    <form th:action="@{/addWork}" method="POST">
+                        <div>
+                            <div class="form-group">
+                                <label th:text="#{admin.work.inputTitle}"></label>
+                                <input name="title" type="text" required />
+                            </div>
+                            <button class="btn" type="submit" th:text="#{admin.work.button}"></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<footer th:replace="fragments/base.html :: footer"></footer>
+
 </body>
 </html>

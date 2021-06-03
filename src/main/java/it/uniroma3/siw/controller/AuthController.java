@@ -8,6 +8,7 @@ import it.uniroma3.siw.service.CredentialsService;
 
 import lombok.AllArgsConstructor;
 
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -36,6 +37,10 @@ public class AuthController {
 
     @GetMapping(value = "/register")
     public String showRegisterForm (Model model) {
+        if (this.isLoggedIn()) {
+            return "redirect:default";
+        }
+
         model.addAttribute("user", new User());
         model.addAttribute("credentials", new Credentials());
         return "register";
@@ -43,6 +48,10 @@ public class AuthController {
 
     @GetMapping(value = "/login")
     public String showLoginForm (Model model, @RequestParam(required = false) boolean register) {
+        if (this.isLoggedIn()) {
+            return "redirect:default";
+        }
+
         if (register) {
             model.addAttribute("registerSuccess", true);
         }
@@ -71,7 +80,7 @@ public class AuthController {
     }
 
     @PostMapping(value = "/register")
-    public String registerEmployee(@ModelAttribute("user") User user,
+    public String registerUser(@ModelAttribute("user") User user,
                                BindingResult userBindingResult,
                                @ModelAttribute("credentials") Credentials credentials,
                                BindingResult credentialsBindingResult,
@@ -83,11 +92,20 @@ public class AuthController {
         if(!userBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
 
             credentials.setUser(user);
-            credentialsService.saveCredentials(credentials);
+            credentialsService.save(credentials);
 
             return "redirect:/login?register=true";
         }
 
         return "register";
+    }
+
+    private boolean isLoggedIn() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null ||
+                AnonymousAuthenticationToken.class.isAssignableFrom(authentication.getClass())) {
+            return false;
+        }
+        return authentication.isAuthenticated();
     }
 }

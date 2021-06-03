@@ -25,4 +25,8 @@ public class WorkService {
     public List<Work> getAll() {
         return this.workRepository.findAll();
     }
+
+    public Work save(Work work) {
+        return this.workRepository.save(work);
+    }
 }

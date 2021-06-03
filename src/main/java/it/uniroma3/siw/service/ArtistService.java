@@ -11,18 +11,18 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 @AllArgsConstructor
 public class ArtistService {
 
     private final ArtistRepository artistRepository;
 
-    @Transactional
+
     public Artist getArtistById(Long id) {
         return this.artistRepository.findById(id)
                 .orElse(null);
     }
 
-    @Transactional
     public List<Artist> getAll() {
         return this.artistRepository.findAll();
     }
