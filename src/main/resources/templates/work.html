@@ -11,16 +11,20 @@
 <section class="work">
     <div class="container">
         <div th:if="${work}" th:object="${work}">
-            <h1>
-                <span th:text="*{title}"></span>
-            </h1>
-            <div th:text="#{work.subtitle}" class="sub-title"></div>
+            <div class="flex-row">
+                <div class="col col-6">
+                    <h1>
+                        <span th:text="*{title}"></span>
+                    </h1>
+                    <div th:text="#{work.subtitle}" class="sub-title"></div>
 
-            <div>
-                <a th:href="@{'/artist/' + *{artist.id}}" th:text="|*{artist.firstName} *{artist.lastName}|"></a>
-                <p th:text="*{description}"></p>
+                    <a th:href="@{'/artist/' + *{artist.id}}" th:text="|*{artist.firstName} *{artist.lastName}|"></a>
+                    <p th:text="*{description}"></p>
+                </div>
+                <div class="col col-4">
+                    <img th:src="*{imageUrl}" class="w-100 p-1">
+                </div>
             </div>
-            <img th:src="*{imageUrl}">
         </div>
         <div th:unless="${work}" th:utext="#work.notFound"></div>
     </div>
