@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: head(title=#{pageTitle.home})"></head>
+<body>
+
+<header th:replace="fragments/base.html :: header"></header>
+<nav th:replace="fragments/base.html :: nav"></nav>
+
+<div class="top-img small info"></div>
+
+<section th:replace="fragments/sections.html :: about"></section>
+
+<section>
+    <div class="container">
+        <img src="/img/map.png" style="width: 100%">
+    </div>
+</section>
+
+<section th:replace="fragments/sections.html :: location"></section>
+
+<footer th:replace="fragments/base.html :: footer"></footer>
+
+</body>
+</html>

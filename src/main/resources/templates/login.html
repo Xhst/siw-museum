@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: head(title=#{pageTitle.login})"></head>
+<body>
+
+<header th:replace="fragments/base.html :: header"></header>
+<nav th:replace="fragments/base.html :: nav"></nav>
+
+<section class="login">
+    <div class="container">
+        <h1 th:text="#{login.title}">Login</h1>
+        <div th:text="#{login.subtitle}" class="sub-title">Accesso dipendente</div>
+
+        <span class="success" th:if="${registerSuccess}" th:text="#{login.registerSuccess}"></span>
+
+        <form th:action="@{/login}" method="POST">
+            <div>
+                <div class="form-group">
+                    <label th:text="#{login.label.username}">Username:</label>
+                    <input name="username" type="text" required />
+                </div>
+                <div class="form-group">
+                    <label th:text="#{login.label.password}">Password:</label>
+                    <input name="password" type="password" required />
+                </div>
+                <button class="btn" type="submit" th:text="#{login.button}">Login</button>
+            </div>
+        </form>
+        <span>Oppure <a th:href="@{/register}">Registrati</a></span>
+    </div>
+</section>
+
+<footer th:replace="fragments/base.html :: footer"></footer>
+</body>
+</html>

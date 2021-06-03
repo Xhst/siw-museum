@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: head(title=#{pageTitle.login})"></head>
+<body>
+
+<header th:replace="fragments/base.html :: header"></header>
+<nav th:replace="fragments/base.html :: nav"></nav>
+
+<div class="top-img small collection"></div>
+
+<section>
+    <div class="container">
+        <h1 th:text="#{collections.title}">Collezioni</h1>
+        <div th:text="#{collections.subtitle}" class="sub-title">Le collezioni del nostro museo</div>
+        <ul>
+            <li th:each="collection : ${collections}">
+                <a th:href="@{'/collection' + '/' + ${collection.id}}"
+                   th:text="${collection.name}"></a>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<footer th:replace="fragments/base.html :: footer"></footer>
+</body>
+</html>

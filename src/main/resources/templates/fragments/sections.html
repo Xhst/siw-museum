@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<section th:fragment="about" class="about">
+    <div class="container">
+        <h1 th:text="#{section.about.title}">Il Museo</h1>
+        <div class="sub-title" th:text="#{section.about.subtitle}">Informazioni sul museo</div>
+        <p th:utext="#{section.about.text}">Lorem Ipsum dolor sit amet<p>
+    </div>
+</section>
+
+<section th:fragment="links">
+    <div class="container">
+        <div class="links flex-row">
+            <div class="link col">
+                <img src="./img/l1.jpg">
+                <a th:href="@{/artists}" th:text="#{section.links.artists}">Artisti</a>
+            </div>
+            <div class="link col">
+                <img src="./img/l2.jpg">
+                <a th:href="@{/works}" th:text="#{section.links.works}">Opere</a>
+            </div>
+            <div class="link col">
+                <img src="./img/l3.jpg">
+                <a th:href="@{/collections}" th:text="#{section.links.collections}">Collezioni</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section th:fragment="location">
+    <div class="container">
+        <div class="flex-row">
+            <div class="col">
+                <h1 th:text="#{section.location.title}">Come raggiungerci</h1>
+                <span th:utext="#{section.location.text}"></span>
+            </div>
+            <div class="col pl-2">
+                <h1 th:text="#{section.reservation.title}">Prenotazioni</h1>
+                <span th:utext="#{section.reservation.text}"></span>
+                <h1 th:text="#{section.tickets.title}">Prezzi biglietti</h1>
+                <span th:utext="#{section.tickets.text}"></span>
+                <h1 th:text="#{section.closingDays.title}">Giorni di chiusura</h1>
+                <span th:utext="#{section.closingDays.text}"></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: head(title=#{pageTitle.login})"></head>
+<body>
+
+<header th:replace="fragments/base.html :: header"></header>
+<nav th:replace="fragments/base.html :: nav"></nav>
+
+<div class="top-img small collection"></div>
+
+<section class="collection">
+    <div class="container">
+        <div th:if="${collection}" th:object="${collection}">
+            <h1 th:text="*{name}"></h1>
+            <div th:text="#{collection.subtitle(*{curator.firstName})}" class="sub-title"></div>
+
+            <div th:text="*{description}"></div>
+
+            <ul>
+                <li th:each="work : *{works}">
+                    <img th:src="${work.imageUrl}">
+                    <strong><a th:href="@{'/work' + '/' + ${work.id}}"
+                       th:text="${work.title}">
+                    </a></strong>
+                    <a th:href="@{'/artist' + '/' + ${work.artist.id}}"
+                       th:text="|${work.artist.firstName} ${work.artist.lastName}|">
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div th:unless="${collection}" th:utext="#collection.notFound"></div>
+    </div>
+</section>
+
+<footer th:replace="fragments/base.html :: footer"></footer>
+</body>
+</html>

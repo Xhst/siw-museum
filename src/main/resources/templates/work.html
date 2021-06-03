@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: head(title=#{pageTitle.login})"></head>
+<body>
+
+<header th:replace="fragments/base.html :: header"></header>
+<nav th:replace="fragments/base.html :: nav"></nav>
+
+<div class="top-img small work"></div>
+
+<section class="work">
+    <div class="container">
+        <div th:if="${work}" th:object="${work}">
+            <h1>
+                <span th:text="*{title}"></span>
+            </h1>
+            <div th:text="#{work.subtitle}" class="sub-title"></div>
+
+            <div>
+                <a th:href="@{'/artist/' + *{artist.id}}" th:text="|*{artist.firstName} *{artist.lastName}|"></a>
+                <p th:text="*{description}"></p>
+            </div>
+            <img th:src="*{imageUrl}">
+        </div>
+        <div th:unless="${work}" th:utext="#work.notFound"></div>
+    </div>
+</section>
+
+<footer th:replace="fragments/base.html :: footer"></footer>
+</body>
+</html>
