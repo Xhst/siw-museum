@@ -2,14 +2,7 @@ package it.uniroma3.siw.model;
 
 import lombok.Data;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -26,7 +19,6 @@ public class Credentials {
     @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(nullable = false)
     private String password;
 
     @Column(nullable = false)
@@ -34,6 +26,9 @@ public class Credentials {
 
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
+
+    @Enumerated(EnumType.STRING)
+    private Provider provider;
 
 
 }

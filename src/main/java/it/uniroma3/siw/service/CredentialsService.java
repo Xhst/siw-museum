@@ -2,6 +2,8 @@ package it.uniroma3.siw.service;
 
 import it.uniroma3.siw.model.Credentials;
 
+import it.uniroma3.siw.model.Provider;
+import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.repository.CredentialsRepository;
 import lombok.AllArgsConstructor;
 
@@ -32,8 +34,27 @@ public class CredentialsService {
 
     public Credentials save(Credentials credentials) {
         credentials.setRole(Credentials.DEFAULT_ROLE);
+        credentials.setProvider(Provider.LOCAL);
         credentials.setPassword(this.passwordEncoder.encode(credentials.getPassword()));
         return this.credentialsRepository.save(credentials);
+    }
+
+    public void processOAuthPostLogin(String email, String firstName, String lastName) {
+        Optional<Credentials> result = this.credentialsRepository.findByUsername(email);
+
+        if (result.isPresent()) return;
+
+        Credentials credentials = new Credentials();
+
+        User user = new User(firstName, lastName);
+        user.setEmail(email);
+        credentials.setUser(user);
+
+        credentials.setUsername(email);
+        credentials.setRole(Credentials.DEFAULT_ROLE);
+        credentials.setProvider(Provider.GOOGLE);
+
+        this.credentialsRepository.save(credentials);
     }
 
 }

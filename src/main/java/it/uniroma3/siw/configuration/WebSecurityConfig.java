@@ -1,5 +1,8 @@
 package it.uniroma3.siw.configuration;
 
+import it.uniroma3.siw.oauth2.GoogleOAuth2User;
+import it.uniroma3.siw.oauth2.GoogleOAuth2UserService;
+import it.uniroma3.siw.service.CredentialsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,6 +30,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     DataSource datasource;
 
+    @Autowired
+    private CredentialsService credentialsService;
+
     /**
      * This method provides the SQL queries to get username and password.
      */
@@ -50,6 +56,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    @Autowired
+    private GoogleOAuth2UserService oauthUserService;
+
     /**
      * This method provides the whole authentication and authorization configuration to use.
      */
@@ -67,6 +76,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .loginPage("/login")
             .defaultSuccessUrl("/default")
 
+            .and().oauth2Login()
+            .loginPage("/login")
+            .userInfoEndpoint().userService(oauthUserService)
+                .and().successHandler((request, response, authentication) -> {
+
+                    GoogleOAuth2User oauthUser = (GoogleOAuth2User) authentication.getPrincipal();
+
+                    credentialsService.processOAuthPostLogin(
+                            oauthUser.getEmail(),
+                            oauthUser.getGivenName(),
+                            oauthUser.getFamilyName()
+                    );
+
+                    response.sendRedirect("/default");
+                })
+
             .and().logout()
             .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
             .logoutUrl("/logout")
@@ -74,4 +99,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .invalidateHttpSession(true)
             .clearAuthentication(true).permitAll();
     }
+
 }

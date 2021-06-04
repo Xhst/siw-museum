@@ -1,5 +1,6 @@
 package it.uniroma3.siw.service;
 
+import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.repository.UserRepository;
 
 import lombok.AllArgsConstructor;

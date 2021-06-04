@@ -2,6 +2,7 @@ package it.uniroma3.siw.controller;
 
 import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.User;
+import it.uniroma3.siw.oauth2.GoogleOAuth2User;
 import it.uniroma3.siw.service.CredentialsService;
 
 import lombok.AllArgsConstructor;
@@ -31,8 +32,16 @@ public class UserController {
     }
 
     private User getCurrentUser() {
-        UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Credentials credentials = this.credentialsService.getCredentials(userDetails.getUsername());
+        Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = null;
+
+        if (obj instanceof UserDetails) {
+            username = ((UserDetails) obj).getUsername();
+        } else if (obj instanceof GoogleOAuth2User) {
+            username = ((GoogleOAuth2User) obj).getEmail();
+        }
+
+        Credentials credentials = this.credentialsService.getCredentials(username);
 
         return credentials.getUser();
     }
