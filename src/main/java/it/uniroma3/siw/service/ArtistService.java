@@ -23,8 +23,17 @@ public class ArtistService {
                 .orElse(null);
     }
 
+    public Artist getArtistFromFullName(String firstName, String lastName) {
+        return this.artistRepository.findByFirstNameAndLastName(firstName, lastName)
+                .orElse(null);
+    }
+
     public List<Artist> getAll() {
         return this.artistRepository.findAll();
+    }
+
+    public Artist save(Artist artist) {
+        return this.artistRepository.save(artist);
     }
 
 }

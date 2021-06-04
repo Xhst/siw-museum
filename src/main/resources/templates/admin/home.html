@@ -14,7 +14,7 @@
             <div class="flex-row">
                 <div class="col col-5 p-1">
                     <h2 th:utext="#{admin.artist.title}"></h2>
-                    <form th:action="@{/addArtist}" method="POST">
+                    <form th:action="@{/admin/addArtist}" method="POST">
                         <div>
                             <div class="form-group">
                                 <label th:utext="#{admin.artist.firstName}"></label>
@@ -38,11 +38,11 @@
                             </div>
                             <div class="form-group">
                                 <label th:utext="#{admin.artist.placeOfDeath}"></label>
-                                <input name="birthPlace" type="text" />
+                                <input name="placeOfDeath" type="text" />
                             </div>
                             <div class="form-group">
                                 <label th:utext="#{admin.artist.dateOfDeath}"></label>
-                                <input name="dateOfBirth" type="date" />
+                                <input name="dateOfDeath" type="date" />
                             </div>
                             <div class="form-group">
                                 <label th:utext="#{admin.artist.biography}"></label>

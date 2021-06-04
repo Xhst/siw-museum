@@ -2,6 +2,7 @@ package it.uniroma3.siw.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,7 +35,9 @@ public class User {
     private String email;
     private String phoneNumber;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
+
     private String BirthPlace;
 
     @OneToMany(mappedBy = "curator")

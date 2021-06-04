@@ -1,6 +1,7 @@
 package it.uniroma3.siw.model;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,10 +31,14 @@ public class Artist {
     @Column(nullable = false)
     private String lastName;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
+
     private String birthPlace;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfDeath;
+
     private String placeOfDeath;
 
     private String nationality;
@@ -41,9 +46,6 @@ public class Artist {
     @Column(length = 5000)
     private String biography;
 
-    /**
-     * Opere realizzate dall'artista.
-     */
     @OneToMany(mappedBy = "artist")
     private List<Work> works;
 

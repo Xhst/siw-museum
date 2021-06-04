@@ -5,6 +5,7 @@ import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Provider;
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.repository.CredentialsRepository;
+
 import lombok.AllArgsConstructor;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -36,6 +37,7 @@ public class CredentialsService {
         credentials.setRole(Credentials.DEFAULT_ROLE);
         credentials.setProvider(Provider.LOCAL);
         credentials.setPassword(this.passwordEncoder.encode(credentials.getPassword()));
+
         return this.credentialsRepository.save(credentials);
     }
 
@@ -44,15 +46,14 @@ public class CredentialsService {
 
         if (result.isPresent()) return;
 
-        Credentials credentials = new Credentials();
-
         User user = new User(firstName, lastName);
         user.setEmail(email);
-        credentials.setUser(user);
 
+        Credentials credentials = new Credentials();
         credentials.setUsername(email);
         credentials.setRole(Credentials.DEFAULT_ROLE);
         credentials.setProvider(Provider.GOOGLE);
+        credentials.setUser(user);
 
         this.credentialsRepository.save(credentials);
     }
