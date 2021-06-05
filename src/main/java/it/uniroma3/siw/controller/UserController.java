@@ -1,5 +1,6 @@
 package it.uniroma3.siw.controller;
 
+import it.uniroma3.siw.model.Artist;
 import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.oauth2.GoogleOAuth2User;
@@ -21,6 +22,7 @@ public class UserController {
 
     @GetMapping(value = { "/user", "/user/home" })
     public String home(Model model) {
+        model.addAttribute("username", this.getCurrentUsername());
         model.addAttribute("user", this.getCurrentUser());
         return "user/home";
     }
@@ -28,10 +30,19 @@ public class UserController {
     @GetMapping(value = { "/admin", "/admin/home" })
     public String adminHome(Model model) {
         model.addAttribute("user", this.getCurrentUser());
+        model.addAttribute("artist", new Artist());
         return "admin/home";
     }
 
     private User getCurrentUser() {
+        String username = this.getCurrentUsername();
+
+        Credentials credentials = this.credentialsService.getCredentials(username);
+
+        return credentials.getUser();
+    }
+
+    private String getCurrentUsername() {
         Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String username = null;
 
@@ -41,8 +52,6 @@ public class UserController {
             username = ((GoogleOAuth2User) obj).getEmail();
         }
 
-        Credentials credentials = this.credentialsService.getCredentials(username);
-
-        return credentials.getUser();
+        return username;
     }
 }

@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: head(title=#{pageTitle.userHome})"></head>
 <body>
-    Prova
+
+<header th:replace="fragments/base.html :: header"></header>
+<nav th:replace="fragments/base.html :: nav"></nav>
+
+<section>
+    <div class="container">
+        <h1 th:utext="#{user.home.title}"></h1>
+        <div th:utext="#{user.home.subtitle(|${user.firstName} ${user.lastName}|)}" class="subtitle"></div>
+        <hr>
+        <h2 th:utext="#{user.home.info}"></h2>
+        <ul>
+            <li th:utext="#{user.home.username(${username})}"></li>
+            <li th:utext="#{user.home.firstName(${user.firstName})}"></li>
+            <li th:utext="#{user.home.lastName(${user.lastName})}"></li></li>
+            <li th:utext="#{user.home.email(${user.email})}"></li>
+        </ul>
+    </div>
+</section>
+
+<footer th:replace="fragments/base.html :: footer"></footer>
 </body>
 </html>
