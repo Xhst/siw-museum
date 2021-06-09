@@ -1,6 +1,6 @@
 package it.uniroma3.siw.controller;
 
-import it.uniroma3.siw.controller.dto.WorkDto;
+import it.uniroma3.siw.dto.WorkDto;
 import it.uniroma3.siw.controller.validator.WorkValidator;
 import it.uniroma3.siw.model.Work;
 import it.uniroma3.siw.service.WorkService;

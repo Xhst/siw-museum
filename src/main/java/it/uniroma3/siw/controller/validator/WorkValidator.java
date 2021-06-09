@@ -1,6 +1,6 @@
 package it.uniroma3.siw.controller.validator;
 
-import it.uniroma3.siw.controller.dto.WorkDto;
+import it.uniroma3.siw.dto.WorkDto;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

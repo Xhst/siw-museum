@@ -18,4 +18,9 @@ public class UserService {
     public boolean existsById(Long id) {
         return this.userRepository.existsById(id);
     }
+
+    public User getById(Long id) {
+        return this.userRepository.findById(id)
+                .orElse(null);
+    }
 }

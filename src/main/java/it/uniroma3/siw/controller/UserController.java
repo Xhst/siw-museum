@@ -1,10 +1,10 @@
 package it.uniroma3.siw.controller;
 
-import it.uniroma3.siw.controller.dto.WorkDto;
+import it.uniroma3.siw.dto.CollectionDto;
+import it.uniroma3.siw.dto.WorkDto;
 import it.uniroma3.siw.model.Artist;
 import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.User;
-import it.uniroma3.siw.model.Work;
 import it.uniroma3.siw.oauth2.GoogleOAuth2User;
 import it.uniroma3.siw.service.CredentialsService;
 
@@ -35,6 +35,7 @@ public class UserController {
 
         model.addAttribute("artist", new Artist());
         model.addAttribute("work", new WorkDto());
+        model.addAttribute("collection", new CollectionDto());
 
         return "admin/home";
     }
