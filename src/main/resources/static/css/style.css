@@ -141,6 +141,13 @@ nav ul li:hover.active {
     background-image: url("/img/bg4.jpg");
 }
 
+.logout {
+    background-color: #ef0000;
+    padding: 10px 25px;
+    color: var(--text-color-light);
+    text-decoration: none;
+}
+
 section {
 	margin: 50px 0;
 }

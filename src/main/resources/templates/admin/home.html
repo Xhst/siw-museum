@@ -8,6 +8,7 @@
 
     <section>
         <div class="container">
+            <a th:href="@{/logout}" th:utext="#{logout}" class="logout"></a>
             <h1 th:utext="#{admin.home.title}"></h1>
             <div th:utext="#{admin.home.subtitle(|${user.firstName} ${user.lastName}|)}" class="subtitle"></div>
             <hr>
