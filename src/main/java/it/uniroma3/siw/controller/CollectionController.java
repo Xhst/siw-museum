@@ -18,7 +18,7 @@ public class CollectionController {
     @GetMapping(value = "/collection/{id}")
     public String getCollection(@PathVariable("id") Long id, Model model) {
         model.addAttribute("classActiveCollection",  "active");
-        model.addAttribute("collection", this.worksCollectionService.getCollectionById(id));
+        model.addAttribute("collection", this.worksCollectionService.getById(id));
         return "collection.html";
     }
 

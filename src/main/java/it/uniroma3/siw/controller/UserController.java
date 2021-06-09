@@ -1,8 +1,10 @@
 package it.uniroma3.siw.controller;
 
+import it.uniroma3.siw.controller.dto.WorkDto;
 import it.uniroma3.siw.model.Artist;
 import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.User;
+import it.uniroma3.siw.model.Work;
 import it.uniroma3.siw.oauth2.GoogleOAuth2User;
 import it.uniroma3.siw.service.CredentialsService;
 
@@ -30,14 +32,17 @@ public class UserController {
     @GetMapping(value = { "/admin", "/admin/home" })
     public String adminHome(Model model) {
         model.addAttribute("user", this.getCurrentUser());
+
         model.addAttribute("artist", new Artist());
+        model.addAttribute("work", new WorkDto());
+
         return "admin/home";
     }
 
     private User getCurrentUser() {
         String username = this.getCurrentUsername();
 
-        Credentials credentials = this.credentialsService.getCredentials(username);
+        Credentials credentials = this.credentialsService.getByUsername(username);
 
         return credentials.getUser();
     }

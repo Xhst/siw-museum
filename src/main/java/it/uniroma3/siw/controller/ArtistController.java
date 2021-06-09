@@ -24,7 +24,7 @@ public class ArtistController {
     @GetMapping(value = "/artist/{id}")
     public String getArtist(@PathVariable("id") Long id, Model model) {
         model.addAttribute("classActiveArtist",  "active");
-        model.addAttribute("artist", this.artistService.getArtistById(id));
+        model.addAttribute("artist", this.artistService.getById(id));
         return "artist.html";
     }
 
@@ -42,7 +42,9 @@ public class ArtistController {
         this.artistValidator.validate(artist, bindingResult);
 
         if (!bindingResult.hasErrors()) {
-            this.artistService.save(artist);
+            artist = this.artistService.save(artist);
+
+            return "redirect:/artist/" + artist.getId();
         }
 
         return "redirect:/admin/home";

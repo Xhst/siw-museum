@@ -26,7 +26,7 @@ public class ArtistValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "required");
 
-        if (this.artistService.getArtistFromFullName(firstName, lastName) != null) {
+        if (this.artistService.getFromFullName(firstName, lastName) != null) {
             errors.reject("error.duplicate");
         }
     }

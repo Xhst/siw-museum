@@ -1,6 +1,9 @@
 package it.uniroma3.siw.service;
 
+import it.uniroma3.siw.controller.dto.WorkDto;
+import it.uniroma3.siw.model.Artist;
 import it.uniroma3.siw.model.Work;
+import it.uniroma3.siw.model.WorksCollection;
 import it.uniroma3.siw.repository.WorkRepository;
 
 import lombok.AllArgsConstructor;
@@ -17,6 +20,10 @@ public class WorkService {
 
     private final WorkRepository workRepository;
 
+    private final ArtistService artistService;
+    private final WorksCollectionService worksCollectionService;
+
+
     public Work getWorkById(Long id) {
         return this.workRepository.findById(id)
                 .orElse(null);
@@ -27,6 +34,27 @@ public class WorkService {
     }
 
     public Work save(Work work) {
+        return this.workRepository.save(work);
+    }
+
+    public Work save(WorkDto workDto) {
+        Work work = new Work();
+
+        work.setTitle(workDto.getTitle());
+        work.setDescription(workDto.getDescription());
+        work.setImageUrl(workDto.getImageUrl());
+        work.setDateOfRealization(workDto.getDateOfRealization());
+
+        if (workDto.getArtistId() != null) {
+            Artist artist = this.artistService.getById(workDto.getArtistId());
+            work.setArtist(artist);
+        }
+
+        if (workDto.getCollectionId() != null) {
+            WorksCollection collection = this.worksCollectionService.getById(workDto.getCollectionId());
+            work.setCollection(collection);
+        }
+
         return this.workRepository.save(work);
     }
 }

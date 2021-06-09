@@ -17,13 +17,16 @@ public class ArtistService {
 
     private final ArtistRepository artistRepository;
 
+    public boolean existsById(Long id) {
+        return this.getById(id) != null;
+    }
 
-    public Artist getArtistById(Long id) {
+    public Artist getById(Long id) {
         return this.artistRepository.findById(id)
                 .orElse(null);
     }
 
-    public Artist getArtistFromFullName(String firstName, String lastName) {
+    public Artist getFromFullName(String firstName, String lastName) {
         return this.artistRepository.findByFirstNameAndLastName(firstName, lastName)
                 .orElse(null);
     }

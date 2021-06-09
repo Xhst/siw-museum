@@ -1,5 +1,6 @@
 package it.uniroma3.siw.controller;
 
+import it.uniroma3.siw.controller.dto.WorkDto;
 import it.uniroma3.siw.controller.validator.WorkValidator;
 import it.uniroma3.siw.model.Work;
 import it.uniroma3.siw.service.WorkService;
@@ -33,13 +34,17 @@ public class WorkController {
         return "works.html";
     }
 
-    @PostMapping(value = "/admin/newWork")
-    public String newOpera(@ModelAttribute("work") Work work,
-                           Model model, BindingResult bindingResult) {
-        this.workValidator.validate(work, bindingResult);
+    @PostMapping(value = "/admin/addWork")
+    public String newWork(@ModelAttribute("work") WorkDto workDto,
+                          Model model, BindingResult bindingResult) {
+        this.workValidator.validate(workDto, bindingResult);
+
         if (!bindingResult.hasErrors()) {
-            this.workService.save(work);
+            Work work = this.workService.save(workDto);
+
+            return "redirect:/work/"+ work.getId();
         }
-        return "admin/home.html";
+
+        return "redirect:/admin/home";
     }
 }

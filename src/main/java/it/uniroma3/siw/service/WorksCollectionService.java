@@ -17,7 +17,11 @@ public class WorksCollectionService {
 
     private final WorksCollectionRepository worksCollectionRepository;
 
-    public WorksCollection getCollectionById(Long id) {
+    public boolean existsById(Long id) {
+        return this.getById(id) != null;
+    }
+
+    public WorksCollection getById(Long id) {
         return this.worksCollectionRepository.findById(id)
                 .orElse(null);
     }

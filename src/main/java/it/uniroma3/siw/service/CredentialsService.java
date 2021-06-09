@@ -23,12 +23,12 @@ public class CredentialsService {
 
     protected final CredentialsRepository credentialsRepository;
 
-    public Credentials getCredentials(Long id) {
+    public Credentials getById(Long id) {
         Optional<Credentials> result = this.credentialsRepository.findById(id);
         return result.orElse(null);
     }
 
-    public Credentials getCredentials(String username) {
+    public Credentials getByUsername(String username) {
         Optional<Credentials> result = this.credentialsRepository.findByUsername(username);
         return result.orElse(null);
     }
