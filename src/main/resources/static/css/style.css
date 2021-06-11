@@ -141,7 +141,7 @@ nav ul li:hover.active {
     background-image: url("/img/bg4.jpg");
 }
 
-.logout {
+.logout, .red-btn {
     background-color: #ef0000;
     padding: 10px 25px;
     color: var(--text-color-light);

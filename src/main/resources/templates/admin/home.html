@@ -58,39 +58,6 @@
                 </div>
 
                 <div class="col col-5 p-1">
-                    <h2 th:utext="#{admin.work.title}"></h2>
-                    <form th:action="@{/admin/addWork}" method="POST">
-                        <div>
-                            <div class="form-group">
-                                <label th:text="#{admin.work.inputTitle}"></label>
-                                <input th:field="${work.title}" name="title" type="text" required />
-                            </div>
-                            <div class="form-group">
-                                <label th:text="#{admin.work.imageUrl}"></label>
-                                <input th:field="${work.imageUrl}" name="imageUrl" type="text" required />
-                            </div>
-                            <div class="form-group">
-                                <label th:text="#{admin.work.description}"></label>
-                                <input th:field="${work.description}" name="description" type="text" />
-                            </div>
-                            <div class="form-group">
-                                <label th:text="#{admin.work.dateOfRealization}"></label>
-                                <input th:field="${work.dateOfRealization}" name="dateOfRealization" type="date" />
-                            </div>
-                            <div class="form-group">
-                                <label th:text="#{admin.work.artistId}"></label>
-                                <input th:field="${work.artistId}" name="artistId" type="number" required/>
-                            </div>
-                            <div class="form-group">
-                                <label th:text="#{admin.work.collectionId}"></label>
-                                <input th:field="${work.collectionId}" name="collectionId" type="number" />
-                            </div>
-                            <button class="btn" type="submit" th:text="#{admin.work.button}"></button>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="col col-5 p-1">
                     <h2 th:utext="#{admin.collection.title}"></h2>
                     <form th:action="@{/admin/addCollection}" method="POST">
                         <div>

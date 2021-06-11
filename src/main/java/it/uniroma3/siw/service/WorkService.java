@@ -24,9 +24,17 @@ public class WorkService {
     private final WorksCollectionService worksCollectionService;
 
 
-    public Work getWorkById(Long id) {
+    public Work getById(Long id) {
         return this.workRepository.findById(id)
                 .orElse(null);
+    }
+
+    public void deleteById(Long id) {
+        Work work = this.getById(id);
+
+        if(work == null) return;
+
+        this.workRepository.deleteById(id);
     }
 
     public List<Work> getAll() {

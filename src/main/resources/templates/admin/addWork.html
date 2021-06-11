@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: head(title=#{pageTitle.adminHome})"></head>
+<body>
+
+<header th:replace="fragments/base.html :: header"></header>
+<nav th:replace="fragments/base.html :: nav"></nav>
+
+<section>
+    <div class="container">
+        <h1 th:utext="#{admin.work.title}"></h1>
+
+        <form th:action="@{/admin/work/add}" method="POST">
+            <div>
+                <div class="form-group">
+                    <label th:text="#{admin.work.inputTitle}"></label>
+                    <input th:field="${work.title}" name="title" type="text" required />
+                </div>
+                <div class="form-group">
+                    <label th:text="#{admin.work.imageUrl}"></label>
+                    <input th:field="${work.imageUrl}" name="imageUrl" type="text" required />
+                </div>
+                <div class="form-group">
+                    <label th:text="#{admin.work.description}"></label>
+                    <input th:field="${work.description}" name="description" type="text" />
+                </div>
+                <div class="form-group">
+                    <label th:text="#{admin.work.dateOfRealization}"></label>
+                    <input th:field="${work.dateOfRealization}" name="dateOfRealization" type="date" />
+                </div>
+                <div class="form-group">
+                    <label th:text="#{admin.work.artistId}"></label>
+                    <input th:field="${work.artistId}" name="artistId" type="number" required/>
+                </div>
+                <div class="form-group">
+                    <label th:text="#{admin.work.collectionId}"></label>
+                    <input th:field="${work.collectionId}" name="collectionId" type="number" />
+                </div>
+                <button class="btn" type="submit" th:text="#{admin.work.button.add}"></button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<footer th:replace="fragments/base.html :: footer"></footer>
+
+</body>
+</html>

@@ -14,7 +14,7 @@
         <div th:text="#{collections.subtitle}" class="sub-title">Le collezioni del nostro museo</div>
         <ul>
             <li th:each="collection : ${collections}">
-                <a th:href="@{'/collection' + '/' + ${collection.id}}"
+                <a th:href="@{'/collection/' + ${collection.id}}"
                    th:text="${collection.name}"></a>
             </li>
         </ul>

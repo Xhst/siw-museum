@@ -24,7 +24,7 @@ public class WorkController {
 
     @GetMapping(value = "/work/{id}")
     public String getWork(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("work", this.workService.getWorkById(id));
+        model.addAttribute("work", this.workService.getById(id));
         return "work.html";
     }
 
@@ -34,17 +34,42 @@ public class WorkController {
         return "works.html";
     }
 
-    @PostMapping(value = "/admin/addWork")
-    public String newWork(@ModelAttribute("work") WorkDto workDto,
+    @GetMapping(value = "/admin/work/{id}")
+    public String getAdminWork(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("work", this.workService.getById(id));
+        return "admin/work.html";
+    }
+
+    @GetMapping(value = { "/admin/works", "/admin/work" })
+    public String getAdminWorks(Model model) {
+        model.addAttribute("works", this.workService.getAll());
+        return "admin/works.html";
+    }
+
+    @GetMapping(value = "/admin/work/add")
+    public String addAdminWorks(Model model) {
+        model.addAttribute("work", new WorkDto());
+        return "admin/addWork.html";
+    }
+
+    @PostMapping(value = "/admin/work/add")
+    public String addWork(@ModelAttribute("work") WorkDto workDto,
                           Model model, BindingResult bindingResult) {
         this.workValidator.validate(workDto, bindingResult);
 
         if (!bindingResult.hasErrors()) {
             Work work = this.workService.save(workDto);
 
-            return "redirect:/work/"+ work.getId();
+            return "redirect:/admin/work/"+ work.getId();
         }
 
-        return "redirect:/admin/home";
+        return "admin/work";
+    }
+
+    @GetMapping(value = "/admin/work/{id}/delete")
+    public String deleteWork(@PathVariable("id") Long id, Model model) {
+        this.workService.deleteById(id);
+
+        return "redirect:/admin/works";
     }
 }

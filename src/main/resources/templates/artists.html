@@ -14,7 +14,7 @@
         <div th:text="#{artists.subtitle}" class="sub-title"></div>
         <ul>
             <li th:each="artist : ${artists}">
-                <a th:href="@{'/artist' + '/' + ${artist.id}}"
+                <a th:href="@{'/artist/' + ${artist.id}}"
                    th:text="|${artist.firstName} ${artist.lastName}|"></a>
             </li>
         </ul>
