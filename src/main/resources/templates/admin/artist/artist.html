@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/base.html :: head(title=#{pageTitle.work})"></head>
+<body>
+
+<header th:replace="fragments/base.html :: header"></header>
+<nav th:replace="fragments/base.html :: nav"></nav>
+
+<div class="top-img small work"></div>
+
+<section class="collection">
+    <div class="container">
+        <div th:if="${artist}" th:object="${artist}">
+            <a th:href="@{'/admin/artist/' + *{id} + '/delete'}" class="red-btn" th:utext="#{admin.artist.button.delete}"></a>
+
+            <h1 th:text="|*{firstName} *{lastName}"></h1>
+            <div th:text="#{artist.subtitle}" class="sub-title"></div>
+
+            <div>
+                <span th:utext="#{artist.nationality}"></span>
+                <img th:src="@{'/img/flags/' + *{nationality} + '.png'}" style="width:1.2em; margin-bottom: -0.25em">
+                <span th:utext="*{nationality}"></span>
+            </div>
+            <div>
+                <span th:utext="#{artist.birth(*{birthPlace}, *{dateOfBirth})}"></span><br>
+                <span th:utext="#{artist.death(*{placeOfDeath}, *{dateOfDeath})}"></span>
+            </div>
+            <div>
+                <p th:utext="*{biography}"></p>
+            </div>
+            <br><br>
+            <h4 th:text="#{artist.works}"></h4>
+            <ul>
+                <li th:each="work : *{works}">
+                    <img th:src="${work.imageUrl}">
+                    <a th:href="@{'/work' + '/' + ${work.id}}"
+                       th:text="${work.title}">
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div th:unless="${artist}" th:utext="#artist.notFound"></div>
+    </div>
+</section>
+
+<footer th:replace="fragments/base.html :: footer"></footer>
+</body>
+</html>

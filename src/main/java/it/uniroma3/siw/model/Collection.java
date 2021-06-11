@@ -18,7 +18,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "works_collections")
-public class WorksCollection {
+public class Collection {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,11 +36,11 @@ public class WorksCollection {
     private List<Work> works;
 
 
-    public WorksCollection() {
+    public Collection() {
         this.works = new ArrayList<>();
     }
 
-    public WorksCollection(String name, User curator) {
+    public Collection(String name, User curator) {
         this();
 
         this.name = name;

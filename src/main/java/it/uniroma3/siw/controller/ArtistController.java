@@ -35,7 +35,25 @@ public class ArtistController {
         return "artists.html";
     }
 
-    @PostMapping(value = "/admin/addArtist")
+    @GetMapping(value = "/admin/artist/{id}")
+    public String getAdminArtist(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("collection", this.artistService.getById(id));
+        return "admin/artist/artist.html";
+    }
+
+    @GetMapping(value = { "/admin/artists", "/admin/artist" })
+    public String getAdminArtists(Model model) {
+        model.addAttribute("collections", this.artistService.getAll());
+        return "admin/artist/artists.html";
+    }
+
+    @GetMapping(value = "/admin/artist/add")
+    public String addAdminArtist(Model model) {
+        model.addAttribute("artist", new Artist());
+        return "admin/artist/addArtist.html";
+    }
+
+    @PostMapping(value = "/admin/artist/add")
     public String addArtist(@ModelAttribute("artist") Artist artist,
                             BindingResult bindingResult,
                             Model model) {
@@ -44,9 +62,17 @@ public class ArtistController {
         if (!bindingResult.hasErrors()) {
             artist = this.artistService.save(artist);
 
-            return "redirect:/artist/" + artist.getId();
+            return "redirect:/admin/artist/" + artist.getId();
         }
 
-        return "redirect:/admin/home";
+        return "redirect:/admin/artist/add";
+    }
+
+
+    @GetMapping(value = "/admin/artist/{id}/delete")
+    public String deleteArtist(@PathVariable("id") Long id, Model model) {
+        this.artistService.deleteById(id);
+
+        return "redirect:/admin/artists";
     }
 }

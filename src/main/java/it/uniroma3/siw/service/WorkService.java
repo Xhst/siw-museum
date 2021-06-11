@@ -3,7 +3,7 @@ package it.uniroma3.siw.service;
 import it.uniroma3.siw.dto.WorkDto;
 import it.uniroma3.siw.model.Artist;
 import it.uniroma3.siw.model.Work;
-import it.uniroma3.siw.model.WorksCollection;
+import it.uniroma3.siw.model.Collection;
 import it.uniroma3.siw.repository.WorkRepository;
 
 import lombok.AllArgsConstructor;
@@ -21,7 +21,7 @@ public class WorkService {
     private final WorkRepository workRepository;
 
     private final ArtistService artistService;
-    private final WorksCollectionService worksCollectionService;
+    private final CollectionService collectionService;
 
 
     public Work getById(Long id) {
@@ -59,7 +59,7 @@ public class WorkService {
         }
 
         if (workDto.getCollectionId() != null) {
-            WorksCollection collection = this.worksCollectionService.getById(workDto.getCollectionId());
+            Collection collection = this.collectionService.getById(workDto.getCollectionId());
             work.setCollection(collection);
         }
 

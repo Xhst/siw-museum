@@ -26,6 +26,10 @@ public class ArtistService {
                 .orElse(null);
     }
 
+    public void deleteById(Long id) {
+        this.artistRepository.deleteById(id);
+    }
+
     public Artist getFromFullName(String firstName, String lastName) {
         return this.artistRepository.findByFirstNameAndLastName(firstName, lastName)
                 .orElse(null);

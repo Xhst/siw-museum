@@ -42,7 +42,7 @@ public class User {
     private String BirthPlace;
 
     @OneToMany(mappedBy = "curator")
-    private List<WorksCollection> collection;
+    private List<Collection> collection;
 
     public User(String firstName, String lastName) {
         this.firstName = firstName;

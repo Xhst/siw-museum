@@ -2,8 +2,8 @@ package it.uniroma3.siw.controller;
 
 import it.uniroma3.siw.dto.CollectionDto;
 import it.uniroma3.siw.controller.validator.CollectionValidator;
-import it.uniroma3.siw.model.WorksCollection;
-import it.uniroma3.siw.service.WorksCollectionService;
+import it.uniroma3.siw.model.Collection;
+import it.uniroma3.siw.service.CollectionService;
 
 import lombok.AllArgsConstructor;
 
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @AllArgsConstructor
 public class CollectionController {
 
-    private final WorksCollectionService collectionService;
+    private final CollectionService collectionService;
     private final CollectionValidator collectionValidator;
 
     @GetMapping(value = "/collection/{id}")
@@ -36,17 +36,44 @@ public class CollectionController {
         return "collections.html";
     }
 
-    @PostMapping(value = "/admin/addCollection")
+    @GetMapping(value = "/admin/collection/{id}")
+    public String getAdminCollection(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("collection", this.collectionService.getById(id));
+        return "admin/collection/collection.html";
+    }
+
+    @GetMapping(value = { "/admin/collections", "/admin/collection" })
+    public String getAdminCollections(Model model) {
+        model.addAttribute("collections", this.collectionService.getAll());
+        return "admin/collection/collections.html";
+    }
+
+    @GetMapping(value = "/admin/collection/add")
+    public String addAdminCollection(Model model) {
+        model.addAttribute("collection", new CollectionDto());
+        return "admin/collection/addCollection.html";
+    }
+
+    @PostMapping(value = "/admin/collection/add")
     public String newCollection(@ModelAttribute("collection") CollectionDto collectionDto,
                                 Model model, BindingResult bindingResult) {
         this.collectionValidator.validate(collectionDto, bindingResult);
 
         if (!bindingResult.hasErrors()) {
-            WorksCollection collection = this.collectionService.save(collectionDto);
+            Collection collection = this.collectionService.save(collectionDto);
 
             return "redirect:/collection/" + collection.getId();
         }
 
-        return "redirect:/admin/home";
+        return "admin/collection/add";
     }
+
+
+    @GetMapping(value = "/admin/collection/{id}/delete")
+    public String deleteCollection(@PathVariable("id") Long id, Model model) {
+        this.collectionService.deleteById(id);
+
+        return "redirect:/admin/collections";
+    }
+
 }

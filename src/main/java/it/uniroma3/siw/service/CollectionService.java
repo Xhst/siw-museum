@@ -1,8 +1,8 @@
 package it.uniroma3.siw.service;
 
 import it.uniroma3.siw.dto.CollectionDto;
-import it.uniroma3.siw.model.WorksCollection;
-import it.uniroma3.siw.repository.WorksCollectionRepository;
+import it.uniroma3.siw.model.Collection;
+import it.uniroma3.siw.repository.CollectionRepository;
 
 import lombok.AllArgsConstructor;
 
@@ -14,9 +14,9 @@ import java.util.List;
 @Service
 @Transactional
 @AllArgsConstructor
-public class WorksCollectionService {
+public class CollectionService {
 
-    private final WorksCollectionRepository worksCollectionRepository;
+    private final CollectionRepository collectionRepository;
 
     private final UserService userService;
 
@@ -24,22 +24,26 @@ public class WorksCollectionService {
         return this.getById(id) != null;
     }
 
-    public WorksCollection getById(Long id) {
-        return this.worksCollectionRepository.findById(id)
+    public Collection getById(Long id) {
+        return this.collectionRepository.findById(id)
                 .orElse(null);
     }
 
-    public List<WorksCollection> getAll() {
-        return this.worksCollectionRepository.findAll();
+    public void deleteById(Long id) {
+        this.collectionRepository.deleteById(id);
     }
 
-    public WorksCollection save(CollectionDto collectionDto) {
-        WorksCollection collection = new WorksCollection();
+    public List<Collection> getAll() {
+        return this.collectionRepository.findAll();
+    }
+
+    public Collection save(CollectionDto collectionDto) {
+        Collection collection = new Collection();
 
         collection.setName(collectionDto.getName());
         collection.setDescription(collectionDto.getDescription());
         collection.setCurator(this.userService.getById(collectionDto.getCuratorId()));
 
-        return this.worksCollectionRepository.save(collection);
+        return this.collectionRepository.save(collection);
     }
 }

@@ -42,5 +42,5 @@ public class Work {
     private Artist artist;
 
     @ManyToOne
-    private WorksCollection collection;
+    private Collection collection;
 }

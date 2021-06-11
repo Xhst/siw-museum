@@ -37,19 +37,19 @@ public class WorkController {
     @GetMapping(value = "/admin/work/{id}")
     public String getAdminWork(@PathVariable("id") Long id, Model model) {
         model.addAttribute("work", this.workService.getById(id));
-        return "admin/work.html";
+        return "admin/work/work.html";
     }
 
     @GetMapping(value = { "/admin/works", "/admin/work" })
     public String getAdminWorks(Model model) {
         model.addAttribute("works", this.workService.getAll());
-        return "admin/works.html";
+        return "admin/work/works.html";
     }
 
     @GetMapping(value = "/admin/work/add")
     public String addAdminWorks(Model model) {
         model.addAttribute("work", new WorkDto());
-        return "admin/addWork.html";
+        return "admin/work/addWork.html";
     }
 
     @PostMapping(value = "/admin/work/add")
@@ -63,7 +63,7 @@ public class WorkController {
             return "redirect:/admin/work/"+ work.getId();
         }
 
-        return "admin/work";
+        return "admin/work/add";
     }
 
     @GetMapping(value = "/admin/work/{id}/delete")

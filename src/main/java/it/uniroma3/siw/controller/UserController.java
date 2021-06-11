@@ -35,9 +35,6 @@ public class UserController {
     public String adminHome(Model model) {
         model.addAttribute("user", this.getCurrentUser());
 
-        model.addAttribute("artist", new Artist());
-        model.addAttribute("collection", new CollectionDto());
-
         return "admin/home";
     }
 
