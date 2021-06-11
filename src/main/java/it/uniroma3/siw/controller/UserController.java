@@ -8,6 +8,7 @@ import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.oauth2.GoogleOAuth2User;
 import it.uniroma3.siw.service.CredentialsService;
 
+import it.uniroma3.siw.service.UserService;
 import lombok.AllArgsConstructor;
 
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class UserController {
 
     private final CredentialsService credentialsService;
+    private final UserService userService;
 
     @GetMapping(value = { "/user", "/user/home" })
     public String home(Model model) {
@@ -38,6 +40,13 @@ public class UserController {
         model.addAttribute("collection", new CollectionDto());
 
         return "admin/home";
+    }
+
+    @GetMapping(value = { "/admin/user", "/admin/users" })
+    public String adminUsers(Model model) {
+        model.addAttribute("users", this.userService.getAll());
+
+        return "admin/users";
     }
 
     private User getCurrentUser() {

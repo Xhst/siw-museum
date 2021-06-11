@@ -326,12 +326,12 @@ section p, section li, section span {
 footer {
 	width: 100%;
 	background-color: var(--main-color);
-	border-top: 10px solid var(--main-color);
+	border-top: 12px solid var(--main-color);
 	position: relative;
 	color: var(--text-color-light);
 	font-size: .75em;
 	padding: 40px 0;
-	margin-top: 50px;
+	margin-top: 60px;
 }
 
 footer::before {
