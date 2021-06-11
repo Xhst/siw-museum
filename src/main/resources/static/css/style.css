@@ -311,6 +311,9 @@ section p, section li, section span {
     position: relative;
     cursor: pointer;
     margin-bottom: 20px;
+    text-decoration: none;
+    margin: 10px 0;
+    display: inline-block;
 }
 
 .btn:hover::before {

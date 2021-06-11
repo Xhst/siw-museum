@@ -6,7 +6,7 @@
 <header th:replace="fragments/base.html :: header"></header>
 <nav th:replace="fragments/base.html :: nav"></nav>
 
-<div class="top-img small work"></div>
+<div class="top-img small artist"></div>
 
 <section class="collection">
     <div class="container">
@@ -39,7 +39,7 @@
                 </li>
             </ul>
         </div>
-        <div th:unless="${artist}" th:utext="#artist.notFound"></div>
+        <div th:unless="${artist}" th:utext="#{artist.notFound}"></div>
     </div>
 </section>
 

@@ -12,10 +12,10 @@
             <h1 th:utext="#{admin.home.title}"></h1>
             <div th:utext="#{admin.home.subtitle(|${user.firstName} ${user.lastName}|)}" class="subtitle"></div>
             <hr>
-            <div class="flex-row">
-
-
-            </div>
+            <h2 th:utext="#{admin.home.links}"></h2>
+            <a th:href="@{/admin/artists}" th:utext="#{admin.artists.title}" class="btn"></a>
+            <a th:href="@{/admin/works}" th:utext="#{admin.works.title}" class="btn"></a>
+            <a th:href="@{/admin/collections}" th:utext="#{admin.collections.title}" class="btn"></a>
         </div>
     </section>
 

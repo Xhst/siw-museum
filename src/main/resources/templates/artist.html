@@ -31,13 +31,13 @@
             <ul>
                 <li th:each="work : *{works}">
                     <img th:src="${work.imageUrl}">
-                    <a th:href="@{'/work' + '/' + ${work.id}}"
+                    <a th:href="@{'/work/' + ${work.id}}"
                        th:text="${work.title}">
                     </a>
                 </li>
             </ul>
         </div>
-        <div th:unless="${artist}" th:utext="#artist.notFound"></div>
+        <div th:unless="${artist}" th:utext="#{artist.notFound}"></div>
     </div>
 </section>
 
