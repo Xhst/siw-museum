@@ -1,7 +1,6 @@
 package it.uniroma3.siw.model;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -14,11 +13,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 
 @Data
-@NoArgsConstructor
 @Entity
 @Table(name = "users")
 public class User {
@@ -44,7 +43,13 @@ public class User {
     @OneToMany(mappedBy = "curator")
     private List<Collection> collection;
 
+    public User() {
+        this.collection = new ArrayList<>();
+    }
+
     public User(String firstName, String lastName) {
+        this();
+
         this.firstName = firstName;
         this.lastName = lastName;
     }
