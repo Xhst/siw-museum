@@ -19,7 +19,7 @@
                     </h1>
                     <div th:text="#{work.subtitle}" class="sub-title"></div>
 
-                    <a th:href="@{'/artist/' + *{artist.id}}" th:text="|*{artist.firstName} *{artist.lastName}|"></a>
+                    <a th:href="@{'/admin/artist/' + *{artist.id}}" th:text="|*{artist.firstName} *{artist.lastName}|"></a>
                     <p th:text="*{description}"></p>
                 </div>
                 <div class="col col-4">

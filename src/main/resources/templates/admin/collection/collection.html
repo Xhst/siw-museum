@@ -21,10 +21,10 @@
             <ul>
                 <li th:each="work : *{works}">
                     <img th:src="${work.imageUrl}">
-                    <strong><a th:href="@{'/work' + '/' + ${work.id}}"
+                    <strong><a th:href="@{'/admin/work/' + ${work.id}}"
                                th:text="${work.title}">
                     </a></strong>
-                    <a th:href="@{'/artist' + '/' + ${work.artist.id}}"
+                    <a th:href="@{'/admin/artist/' + ${work.artist.id}}"
                        th:text="|${work.artist.firstName} ${work.artist.lastName}|">
                     </a>
                 </li>
