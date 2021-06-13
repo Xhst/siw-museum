@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class WorkController {
 
     private final WorkService workService;
+
     private final WorkValidator workValidator;
 
     @GetMapping(value = "/work/{id}")

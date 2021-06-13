@@ -43,6 +43,7 @@ public class User {
     @OneToMany(mappedBy = "curator")
     private List<Collection> collection;
 
+
     public User() {
         this.collection = new ArrayList<>();
     }

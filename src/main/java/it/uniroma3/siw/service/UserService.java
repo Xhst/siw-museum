@@ -17,6 +17,7 @@ public class UserService {
 
     protected final UserRepository userRepository;
 
+
     public boolean existsById(Long id) {
         return this.userRepository.existsById(id);
     }

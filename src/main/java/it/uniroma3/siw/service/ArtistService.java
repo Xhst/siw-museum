@@ -17,6 +17,7 @@ public class ArtistService {
 
     private final ArtistRepository artistRepository;
 
+
     public boolean existsById(Long id) {
         return this.getById(id) != null;
     }

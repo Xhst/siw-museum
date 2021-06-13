@@ -20,6 +20,7 @@ public class CollectionService {
 
     private final UserService userService;
 
+
     public boolean existsById(Long id) {
         return this.getById(id) != null;
     }

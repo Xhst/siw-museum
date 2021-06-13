@@ -3,6 +3,8 @@ package it.uniroma3.siw.configuration;
 import it.uniroma3.siw.oauth2.GoogleOAuth2User;
 import it.uniroma3.siw.oauth2.GoogleOAuth2UserService;
 import it.uniroma3.siw.service.CredentialsService;
+import static it.uniroma3.siw.model.Credentials.ADMIN_ROLE;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +20,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
-import static it.uniroma3.siw.model.Credentials.ADMIN_ROLE;
 
 @Configuration
 @EnableWebSecurity
@@ -41,11 +42,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
-                //use the autowired datasource to access the saved credentials
                 .dataSource(this.datasource)
-                //retrieve username and role
                 .authoritiesByUsernameQuery("SELECT username, role FROM credentials WHERE username=?")
-                //retrieve username, password and a boolean flag specifying whether the user is enabled or not (always enabled in our case)
                 .usersByUsernameQuery("SELECT username, password, 1 as enabled FROM credentials WHERE username=?");
     }
 

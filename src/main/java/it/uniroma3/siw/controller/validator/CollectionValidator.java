@@ -17,6 +17,7 @@ public class CollectionValidator implements Validator {
 
     private final UserService userService;
 
+
     @Override
     public void validate(Object o, Errors errors) {
         CollectionDto collection = (CollectionDto) o;

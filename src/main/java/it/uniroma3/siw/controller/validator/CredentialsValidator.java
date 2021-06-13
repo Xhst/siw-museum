@@ -20,6 +20,7 @@ public class CredentialsValidator implements Validator {
     final Integer MAX_PASSWORD_LENGTH = 20;
     final Integer MIN_PASSWORD_LENGTH = 6;
 
+
     @Override
     public void validate(Object o, Errors errors) {
         Credentials credentials = (Credentials) o;

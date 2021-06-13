@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class CollectionController {
 
     private final CollectionService collectionService;
+
     private final CollectionValidator collectionValidator;
+
 
     @GetMapping(value = "/collection/{id}")
     public String getCollection(@PathVariable("id") Long id, Model model) {

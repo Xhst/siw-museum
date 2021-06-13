@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface ArtistRepository extends CrudRepository<Artist, Long> {
+
     List<Artist> findAll();
 
     Optional<Artist> findByFirstNameAndLastName(String firstName, String lastName);

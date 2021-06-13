@@ -9,5 +9,6 @@ import java.util.List;
 
 @Repository
 public interface WorkRepository extends CrudRepository<Work, Long> {
+
     List<Work> findAll();
 }

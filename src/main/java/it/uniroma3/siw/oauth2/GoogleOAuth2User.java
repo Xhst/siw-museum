@@ -10,6 +10,7 @@ public class GoogleOAuth2User implements OAuth2User {
 
     private final OAuth2User oauth2User;
 
+
     public GoogleOAuth2User(OAuth2User oauth2User) {
         this.oauth2User = oauth2User;
     }

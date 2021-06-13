@@ -31,12 +31,16 @@ public class AuthController {
     private final CredentialsService credentialsService;
 
     private final UserValidator userValidator;
-
     private final CredentialsValidator credentialsValidator;
 
 
+    /**
+     *
+     * @param model
+     * @return
+     */
     @GetMapping(value = "/register")
-    public String showRegisterForm (Model model) {
+    public String showRegisterForm(Model model) {
         if (this.isLoggedIn()) {
             return "redirect:default";
         }
@@ -71,7 +75,7 @@ public class AuthController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String role = auth.getAuthorities().toString();
 
-        if(role.contains(Credentials.ADMIN_ROLE)) {
+        if (role.contains(Credentials.ADMIN_ROLE)) {
             response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/admin/home"));
             return;
         }
@@ -89,23 +93,24 @@ public class AuthController {
         this.userValidator.validate(user, userBindingResult);
         this.credentialsValidator.validate(credentials, credentialsBindingResult);
 
-        if(!userBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
-
-            credentials.setUser(user);
-            credentialsService.save(credentials);
-
-            return "redirect:/login?register=true";
+        if (userBindingResult.hasErrors() || credentialsBindingResult.hasErrors()) {
+            return "register";
         }
 
-        return "register";
+        credentials.setUser(user);
+        credentialsService.save(credentials);
+
+        return "redirect:/login?register=true";
+
     }
 
     private boolean isLoggedIn() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication == null ||
-                AnonymousAuthenticationToken.class.isAssignableFrom(authentication.getClass())) {
+
+        if (authentication == null || AnonymousAuthenticationToken.class.isAssignableFrom(authentication.getClass())) {
             return false;
         }
+
         return authentication.isAuthenticated();
     }
 }

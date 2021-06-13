@@ -23,6 +23,7 @@ public class CredentialsService {
 
     protected final CredentialsRepository credentialsRepository;
 
+
     public Credentials getById(Long id) {
         Optional<Credentials> result = this.credentialsRepository.findById(id);
         return result.orElse(null);

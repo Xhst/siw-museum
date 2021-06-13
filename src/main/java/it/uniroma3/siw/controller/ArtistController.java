@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 @AllArgsConstructor
 public class ArtistController {
 
-    private final ArtistValidator artistValidator;
     private final ArtistService artistService;
+
+    private final ArtistValidator artistValidator;
+
 
     @GetMapping(value = "/artist/{id}")
     public String getArtist(@PathVariable("id") Long id, Model model) {

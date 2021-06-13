@@ -24,6 +24,7 @@ public class UserController {
     private final CredentialsService credentialsService;
     private final UserService userService;
 
+
     @GetMapping(value = { "/user", "/user/home" })
     public String home(Model model) {
         model.addAttribute("username", this.getCurrentUsername());
