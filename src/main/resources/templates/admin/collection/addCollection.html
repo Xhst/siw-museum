@@ -13,43 +13,23 @@
         <h1 th:utext="#{admin.collection.title}"></h1>
 
         <h2 th:utext="#{admin.artist.title}"></h2>
-        <form th:action="@{/admin/addArtist}" method="POST">
+
+        <form th:action="@{/admin/collection/add}" method="POST">
             <div>
                 <div class="form-group">
-                    <label th:utext="#{admin.artist.firstName}"></label>
-                    <input name="firstName" type="text" required />
-                    <span th:if="${#fields.hasErrors('artist.firstName')}" th:errors="${artist.firstName}"></span>
+                    <label th:text="#{admin.collection.name}"></label>
+                    <input th:field="${collection.name}" name="name" type="text" required />
                 </div>
                 <div class="form-group">
-                    <label th:utext="#{admin.artist.lastName}"></label>
-                    <input name="lastName" type="text" required />
-                    <span th:if="${#fields.hasErrors('artist.lastName')}" th:errors="${artist.lastName}"></span>
+                    <label th:text="#{admin.collection.description}"></label>
+                    <input th:field="${collection.description}" name="description" type="text" required />
                 </div>
                 <div class="form-group">
-                    <label th:utext="#{admin.artist.nationality}"></label>
-                    <input name="nationality" type="text" />
+                    <label th:text="#{admin.collection.curatorId}"></label>
+                    <input th:field="${collection.curatorId}" name="curatorId" type="text" required/>
+                    <a th:href="@{/admin/users}" th:utext="#{admin.collection.usersLink}"></a>
                 </div>
-                <div class="form-group">
-                    <label th:utext="#{admin.artist.birthPlace}"></label>
-                    <input name="birthPlace" type="text" />
-                </div>
-                <div class="form-group">
-                    <label th:utext="#{admin.artist.dateOfBirth}"></label>
-                    <input name="dateOfBirth" type="date" />
-                </div>
-                <div class="form-group">
-                    <label th:utext="#{admin.artist.placeOfDeath}"></label>
-                    <input name="placeOfDeath" type="text" />
-                </div>
-                <div class="form-group">
-                    <label th:utext="#{admin.artist.dateOfDeath}"></label>
-                    <input name="dateOfDeath" type="date" />
-                </div>
-                <div class="form-group">
-                    <label th:utext="#{admin.artist.biography}"></label>
-                    <input name="biography" type="text" />
-                </div>
-                <button class="btn" type="submit" th:utext="#{admin.artist.button.add}"></button>
+                <button class="btn" type="submit" th:text="#{admin.collection.button.add}"></button>
             </div>
         </form>
     </div>
