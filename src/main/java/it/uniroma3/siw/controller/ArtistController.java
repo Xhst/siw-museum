@@ -71,7 +71,7 @@ public class ArtistController {
     }
 
 
-    @PostMapping(value = "/admin/artist/{id}/delete")
+    @GetMapping(value = "/admin/artist/{id}/delete")
     public String deleteArtist(@PathVariable("id") Long id, Model model) {
         this.artistService.deleteById(id);
 

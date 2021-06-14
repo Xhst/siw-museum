@@ -67,7 +67,7 @@ public class WorkController {
         return "admin/work/add";
     }
 
-    @PostMapping(value = "/admin/work/{id}/delete")
+    @GetMapping(value = "/admin/work/{id}/delete")
     public String deleteWork(@PathVariable("id") Long id, Model model) {
         this.workService.deleteById(id);
 

@@ -71,7 +71,7 @@ public class CollectionController {
     }
 
 
-    @PostMapping(value = "/admin/collection/{id}/delete")
+    @GetMapping(value = "/admin/collection/{id}/delete")
     public String deleteCollection(@PathVariable("id") Long id, Model model) {
         this.collectionService.deleteById(id);
 
