@@ -59,7 +59,7 @@ public class WorkController {
         this.workValidator.validate(workDto, bindingResult);
 
         if (!bindingResult.hasErrors()) {
-            Work work = this.workService.save(workDto);
+            Work work = this.workService.saveFromDto(workDto);
 
             return "redirect:/admin/work/"+ work.getId();
         }
@@ -67,7 +67,7 @@ public class WorkController {
         return "admin/work/add";
     }
 
-    @GetMapping(value = "/admin/work/{id}/delete")
+    @PostMapping(value = "/admin/work/{id}/delete")
     public String deleteWork(@PathVariable("id") Long id, Model model) {
         this.workService.deleteById(id);
 

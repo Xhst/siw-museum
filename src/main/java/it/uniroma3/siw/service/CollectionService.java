@@ -38,7 +38,7 @@ public class CollectionService {
         return this.collectionRepository.findAll();
     }
 
-    public Collection save(CollectionDto collectionDto) {
+    public Collection saveFromDto(CollectionDto collectionDto) {
         Collection collection = new Collection();
 
         collection.setName(collectionDto.getName());

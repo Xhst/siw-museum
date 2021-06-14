@@ -62,7 +62,7 @@ public class CollectionController {
         this.collectionValidator.validate(collectionDto, bindingResult);
 
         if (!bindingResult.hasErrors()) {
-            Collection collection = this.collectionService.save(collectionDto);
+            Collection collection = this.collectionService.saveFromDto(collectionDto);
 
             return "redirect:/collection/" + collection.getId();
         }
@@ -71,7 +71,7 @@ public class CollectionController {
     }
 
 
-    @GetMapping(value = "/admin/collection/{id}/delete")
+    @PostMapping(value = "/admin/collection/{id}/delete")
     public String deleteCollection(@PathVariable("id") Long id, Model model) {
         this.collectionService.deleteById(id);
 

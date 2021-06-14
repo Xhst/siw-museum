@@ -41,11 +41,7 @@ public class WorkService {
         return this.workRepository.findAll();
     }
 
-    public Work save(Work work) {
-        return this.workRepository.save(work);
-    }
-
-    public Work save(WorkDto workDto) {
+    public Work saveFromDto(WorkDto workDto) {
         Work work = new Work();
 
         work.setTitle(workDto.getTitle());
