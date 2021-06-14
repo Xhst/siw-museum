@@ -13,6 +13,8 @@
         <h1 th:utext="#{admin.collections.title}"></h1>
         <div th:utext="#{admin.collections.subtitle}" class="sub-title"></div>
 
+        <a th:href="@{/admin/collection/add}" th:utext="#{admin.collection.button.add}" class="btn"></a>
+
         <ul style="font-size:1.4em">
             <li th:each="collection : ${collections}">
                 <a th:href="@{'/admin/collection/' + ${collection.id}}"

@@ -13,6 +13,8 @@
         <h1 th:utext="#{admin.works.title}"></h1>
         <div th:utext="#{admin.works.subtitle}" class="sub-title"></div>
 
+        <a th:href="@{/admin/work/add}" th:utext="#{admin.work.button.add}" class="btn"></a>
+
         <ul style="font-size:1.4em">
             <li th:each="work : ${works}">
                 <a th:href="@{'/admin/work/' + ${work.id}}"
