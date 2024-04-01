@@ -52,7 +52,6 @@ INSERT INTO credentials (id, password, role, username, user_id, provider) VALUES
 (1, '$2a$10$WB1eX2F4FVxVZkCOYZD1quiZz1hNgYMXask94V8VZiIXaUWIzUtfa', 'ADMIN', 'lorem', 1, 'LOCAL'),
 (2, '$2a$10$RSHvWVOXn7Pq6vDKgv7NiekgfFduawXCLgJSYMsdFO2C1Qx8.Ost6', 'DEFAULT', 'Ipsum', 2, 'LOCAL'),
 (3, '$2a$10$VCYJi3CduVr/8Tzl6Kvcy.x/Vuj3sW.TAiVvoqKVLcYPez/bJNWRm', 'DEFAULT', 'Dolor', 3, 'LOCAL'),
-(9, NULL, 'DEFAULT', 'mattiamicaloni99@gmail.com', 7, 'GOOGLE'),
 (10, '$2a$10$NYQAGuRkuEUPmo/ivjz7s.4koXUvSBNOW4xbMWXjBjwXD8WVeJX2G', 'DEFAULT', 'Prova', 8, 'LOCAL');
 
 -- --------------------------------------------------------
@@ -96,7 +95,6 @@ INSERT INTO users (id, birth_place, date_of_birth, email, first_name, last_name,
 (1, NULL, NULL, 'lorem@ipsum.prova', 'Lorem', 'Ipsum', NULL),
 (2, NULL, NULL, 'lorem@ipsum.prova', 'Lorem', 'Ipsum', NULL),
 (3, NULL, NULL, 'lorem@ipsum.prova', 'Lorem', 'Ipsum', NULL),
-(7, NULL, NULL, 'mattiamicaloni99@gmail.com', 'Mattia', 'Micaloni', NULL),
 (8, NULL, NULL, 'mario.rossi@example.com', 'Mario', 'Rossi', NULL);
 
 -- --------------------------------------------------------
